@@ -20,12 +20,18 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Status code should be 404\", function () {\r",
-											"    pm.response.to.have.status(404);\r",
+											"pm.test(\"Status code should be 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
 											"});\r",
-											"pm.test(\"Status code name should have a Not Found string\", function () {\r",
-											"    pm.response.to.have.status(\"Not Found\");\r",
+											"pm.test(\"Status code name should have an OK string\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
 											"});\r",
+											"\r",
+											"    var jsonData = pm.response.json();\r",
+											"    console.log(jsonData)\r",
+											"    console.log(json.Data.TotalResults)\r",
+											"\r",
+											"\r",
 											"\r",
 											""
 										],
@@ -62,20 +68,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/pet/:petId",
+									"raw": "{{baseUrl}}/pet/701",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"pet",
-										":petId"
-									],
-									"variable": [
-										{
-											"key": "petId",
-											"value": "24361040",
-											"description": "(Required) ID of pet to return"
-										}
+										"701"
 									]
 								},
 								"description": "Returns a single pet"
@@ -290,11 +289,11 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Status code is 404\", function () {\r",
-											"    pm.response.to.have.status(404);\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
 											"});\r",
-											"pm.test(\"Status code name should have a Not Found string\", function () {\r",
-											"    pm.response.to.have.status(\"Not Found\");\r",
+											"pm.test(\"Status code name should have an ok string\", function () {\r",
+											"    pm.response.to.have.status(\"ok\");\r",
 											"});\r",
 											""
 										],
@@ -314,35 +313,22 @@
 									}
 								],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "name",
-											"value": "sed",
-											"description": "Updated name of the pet"
-										},
-										{
-											"key": "status",
-											"value": "do in aliqua",
-											"description": "Updated status of the pet"
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 701,\r\n    \"category\": {\r\n        \"id\": 0,\r\n        \"name\": \"<Tosin>\"\r\n    },\r\n    \"name\": \"test\",\r\n    \"photoUrls\": [\r\n        \"Bola\"\r\n    ],\r\n    \"tags\": [\r\n        {\r\n            \"id\": 0,\r\n            \"name\": \"<tag>\"\r\n        }\r\n    ],\r\n    \"status\": \"pending\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									]
+									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/pet/:petId",
+									"raw": "{{baseUrl}}/pet/701",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"pet",
-										":petId"
-									],
-									"variable": [
-										{
-											"key": "petId",
-											"value": "24361040",
-											"description": "(Required) ID of pet that needs to be updated"
-										}
+										"701"
 									]
 								}
 							},
@@ -434,21 +420,18 @@
 										"value": "exercitation"
 									}
 								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 701,\r\n    \"category\": {\r\n        \"id\": 0,\r\n        \"name\": \"<categoryname>\"\r\n    },\r\n    \"name\": \"test\",\r\n    \"photoUrls\": [\r\n        \"string\"\r\n    ],\r\n    \"tags\": [\r\n        {\r\n            \"id\": 0,\r\n            \"name\": \"<tag>\"\r\n        }\r\n    ],\r\n    \"status\": \"pending\"\r\n}"
+								},
 								"url": {
-									"raw": "{{baseUrl}}/pet/:petId",
+									"raw": "{{baseUrl}}/pet/701",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"pet",
-										":petId"
-									],
-									"variable": [
-										{
-											"key": "petId",
-											"value": "24361040",
-											"description": "(Required) Pet id to delete"
-										}
+										"701"
 									]
 								}
 							},
@@ -793,7 +776,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"doggie\",\n  \"photoUrls\": [\n    \"id\",\n    \"consectetur ea\"\n  ],\n  \"id\": 96065823,\n  \"category\": {\n    \"id\": -92570440,\n    \"name\": \"enim laboris do aliquip ipsum\"\n  },\n  \"tags\": [\n    {\n      \"id\": 94228171,\n      \"name\": \"Duis magna\"\n    },\n    {\n      \"id\": 86963353,\n      \"name\": \"eu\"\n    }\n  ],\n  \"status\": \"sold\"\n}",
+							"raw": "{\n    \"id\": 701,\n    \"category\": {\n        \"id\": 0,\n        \"name\": \"<John>\"\n    },\n    \"name\": \"test\",\n    \"photoUrls\": [\n        \"Jane\"\n    ],\n    \"tags\": [\n        {\n            \"id\": 0,\n            \"name\": \"<tag>\"\n        }\n    ],\n    \"status\": \"pending\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -924,7 +907,14 @@
 									"});\r",
 									"pm.test(\"Status code name should have an OK string\", function () {\r",
 									"    pm.response.to.have.status(\"OK\");\r",
-									"});"
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log(jsonData)\r",
+									"    console.log(jsonData.totalResults)\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -942,7 +932,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/pet/findByStatus?status=available&status=available",
+							"raw": "{{baseUrl}}/pet/findByStatus?status=pending&status=pending",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -953,12 +943,12 @@
 							"query": [
 								{
 									"key": "status",
-									"value": "available",
+									"value": "pending",
 									"description": "(Required) Status values that need to be considered for filter"
 								},
 								{
 									"key": "status",
-									"value": "available",
+									"value": "pending",
 									"description": "(Required) Status values that need to be considered for filter"
 								}
 							]
@@ -1068,7 +1058,15 @@
 									"});\r",
 									"pm.test(\"Status code name should have an OK string\", function () {\r",
 									"    pm.response.to.have.status(\"OK\");\r",
-									"});"
+									"});\r",
+									"\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log(jsonData)\r",
+									"    console.log(jsonData.totalResults)\r",
+									"\r",
+									"\r",
+									"\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -2333,7 +2331,16 @@
 									"});\r",
 									"pm.test(\"Status code name should have an OK string\", function () {\r",
 									"    pm.response.to.have.status(\"OK\");\r",
-									"});"
+									"});\r",
+									"\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log(jsonData)\r",
+									"    console.log(jsonData.totalResults)\r",
+									"\r",
+									"pm.test(\"confirm that the total test result should be undefined\", function () {\r",
+									"    pm.expect(jsonData.totalResults).to.eql(undefined);\r",
+									"});\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -2471,6 +2478,14 @@
 									"});\r",
 									"pm.test(\"Status code name should have an OK string\", function () {\r",
 									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"    var jsonData = pm.response.json();\r",
+									"    console.log(jsonData)\r",
+									"    console.log(jsonData.totalResults)\r",
+									"\r",
+									"pm.test(\"confirm that the total test result should be undefined\", function () {\r",
+									"    pm.expect(jsonData.totalResults).to.eql(undefined);\r",
 									"});"
 								],
 								"type": "text/javascript"
